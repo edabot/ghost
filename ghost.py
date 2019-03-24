@@ -6,10 +6,10 @@ from tkinter import *
 from gpiozero import Servo, LED, Button
 from time import sleep
 
-movie = ("small.mp4")
-servo = Servo(17)
-led = LED(27)
-button = Button(3)
+movie = ("ghost_sideways_2.mp4")
+lensCover = Servo(17)
+projectorButton = LED(27)
+demoButton = Button(3)
 ghostActive = False
 
 def play_movie():
@@ -18,26 +18,26 @@ def play_movie():
 
 def ghost():
     ghostActive = True
-    servo.min()
-    led.on()
+    lensCover.min()
+    projectorButton.on()
     sleep(1)
-    led.off()
+    projectorButton.off()
     sleep(3)
-    servo.max()
+    lensCover.max()
     sleep(2)
-    servo.detach()
+    lensCover.detach()
     play_movie()
     sleep(6)
-    led.on()
+    projectorButton.on()
     sleep(1)
-    led.off()
+    projectorButton.off()
     ghostActive = False
     
 def handleButton():
     if ghostActive == False:
         ghost()
         
-button.when_pressed=handleButton
+demoButton.when_pressed=handleButton
 
 schedule.every().minute.do(ghost)
     
@@ -53,6 +53,8 @@ class Fullscreen_Window:
         self.tk.bind("<F11>", self.toggle_fullscreen)
         self.tk.bind("<Escape>", self.end_fullscreen)
         self.tk["bg"] = "black"
+        self.tk["cursor"] = "none"
+        self.toggle_fullscreen()
 
     def toggle_fullscreen(self, event=None):
         self.state = not self.state  # Just toggling the boolean
