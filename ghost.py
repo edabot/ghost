@@ -16,7 +16,7 @@ def play_movie():
     os.system('killall omxplayer.bin')
     osmx = Popen(['omxplayer', '-b', movie])
 
-def ghost():
+def showGhost():
     ghostActive = True
     lensCover.min()
     projectorButton.on()
@@ -39,8 +39,8 @@ def handleButton():
         
 demoButton.when_pressed=handleButton
 
-schedule.every().minute.do(ghost)
-    
+schedule.every().minute.do(showGhost)
+schedule.every().day.at("01:00").do(showGhost)
 
 class Fullscreen_Window:
 
