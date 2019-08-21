@@ -5,6 +5,7 @@ import schedule
 from tkinter import *
 from gpiozero import Servo, LED, Button
 from time import sleep
+from flask import request, Flask, render_template
 
 movie = ("/home/pi/Documents/ghost/ghost_sideways_2.mp4")
 lensCover = Servo(17)
@@ -32,15 +33,17 @@ def showGhost():
     sleep(1)
     projectorButton.off()
     ghostActive = False
-    
-def handleButton():
-    if ghostActive == False:
-        ghost()
-        
-demoButton.when_pressed=handleButton
 
-schedule.every().day.at("01:00").do(showGhost)
+app=Flask(__name__)
+
+@app.route('/', methods=["GET"])
+def api_root():
+    return render_template('index.html')
+
+@app.route('/playghost', methods=["GET"])
+def playGhost():
+    play_movie()
+    return render_template('index.html')
     
-def draw():
-    schedule.run_pending()
-    w.tk.after(1000, draw)
+if __name__ == "__main__":
+    app.run()
