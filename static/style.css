@@ -1,0 +1,32 @@
+body, html {
+	margin: 0;
+	padding: 0;
+}	
+
+* {
+	box-sizing: border-box;
+}
+.container {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.button {
+	padding: 1rem 2rem;
+	border-radius: .5rem;
+	color: white;
+	font: bold 18px Arial;
+	background-color: #1281BA;
+	transition: background-color .25s ease-out;
+}
+
+.button:hover {
+	background-color: #174d8a;
+}
+
+a {
+	text-decoration: none;
+}
