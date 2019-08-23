@@ -8,11 +8,12 @@
 <body>
 	<div class="container">
 	<div>&nbsp;</div>
-		<a href="/playghost"><div id="button" class="active">play ghost video</div></a>
+		<div><a href="/playghost" class="button" onclick="startGhost()">play ghost video</a></div>
 	<div id="status">&nbsp;</div>
 	</div>
+</body>
+
 	<script>
-		let ghostPlaying = false;
 	const changeStatus = (status) => {
 		var element = document.getElementById("status");
 		element.innerHTML = status;
@@ -23,22 +24,10 @@
 		{message: "video playing", time: 6},
 		{message: "projector turning off", time: 20},
 		{message: "&nbsp;", time: 22},
-	]
-	const button = document.getElementById("button");
-	const playGhost = () => {
-		if (!ghostPlaying) {
-			ghostPlaying = true;
-			button.classList.add("inactive");
-			timeline.forEach(e => {
-				setTimeout(() => {changeStatus(e.message)}, e.time*1000);
-			})
-		}
-	}
-	button.onclick = () => {	
-		playGhost()
+	const startGhost = () => {	
+		timeline.forEach(e => {
+			setTimeout(() => {changeStatus(e.message)}, e.time*1000);
+		})
 	}
 	</script>
-</body>
-
-
 </html>

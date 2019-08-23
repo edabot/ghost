@@ -10,23 +10,38 @@ body, html {
 	width: 100vw;
 	height: 100vh;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	justify-content: space-between;
 	align-items: center;
 }
 
-.button {
+#button {
 	padding: 1rem 2rem;
 	border-radius: .5rem;
 	color: white;
 	font: bold 18px Arial;
-	background-color: #1281BA;
 	transition: background-color .25s ease-out;
+	background-color: #1281BA;
 }
 
-.button:hover {
+#button:hover {
 	background-color: #174d8a;
+}
+
+#button.inactive {
+	background-color: #888;
 }
 
 a {
 	text-decoration: none;
+}
+
+button:active {
+	background-color: #888;
+}
+
+#status {
+	font: 14px Arial;
+	color: #999;
+	padding-bottom: 1rem;
 }
